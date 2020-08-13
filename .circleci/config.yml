@@ -1,0 +1,69 @@
+version: 2
+
+working_directory: &working_directory ~/oo-in-python
+
+# Default step config
+defaults_python: &defaults_python
+  docker:
+    - image: circleci/python:3.7
+      environment:
+        TOXENV: ci37
+    - image: circleci/python:3.6
+      environment:
+        TOXENV: ci36
+  working_directory: *working_directory
+
+#NPM
+restore_package_cache: &restore_package_cache
+  restore_cache:
+    name: Restore Package Cache
+    keys:
+      - deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
+
+save_package_cache: &save_package_cache
+  save_cache:
+    key: deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
+    paths:
+      - "venv"
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+environment:
+  CIRCLE_PROJECT_REPONAME: python-patterns
+
+jobs:
+  build:
+    <<: *defaults_python
+    docker:
+      - image: circleci/python:3.7
+        environment:
+          TOXENV: ci37
+          CIRCLE_PROJECT_REPONAME: python-patterns
+      - image: circleci/python:3.6
+        environment:
+          TOXENV: ci36
+
+    steps:
+      - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache: # ensure this step occurs *before* installing dependencies
+          key: deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
+      - run:
+          command: |
+            pip install --upgrade pip
+            pip install tox codecov
+      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - "venv"
+      - run:
+          name: "code analysis (Test and syntax)"
+          command: tox
+      - run:
+          name: "codecov"
+          command: codecov
