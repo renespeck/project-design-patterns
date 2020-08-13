@@ -3,7 +3,7 @@ version: 2
 working_directory: &working_directory ~/oo-in-python
 
 # Default step config
-defaults_python: &defaults_python
+python3.7: &defaults_python
   docker:
     - image: circleci/python:3.7
       environment:
@@ -16,12 +16,12 @@ restore_package_cache: &restore_package_cache
   restore_cache:
     name: Restore Package Cache
     keys:
-      - deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
+      - deps1-{{ .Branch }}-{{ checksum "requirements-dev.txt" }}
 
 save_package_cache: &save_package_cache
   save_cache:
     name: Save Package Cache
-    key: deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
+    key: deps1-{{ .Branch }}-{{ checksum "requirements-dev.txt" }}
     paths:
       - "venv"
 
@@ -42,17 +42,13 @@ jobs:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
-      - restore_cache: # ensure this step occurs *before* installing dependencies
-          key: deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
+      - *restore_package_cache
       - run:
           command: |
             export CIRCLE_PROJECT_REPONAME=oo-in-python
             pip install --upgrade pip
             pip install tox codecov
-      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - "venv"
+      - *save_package_cache
       - run:
           name: "code analysis (Test and syntax)"
           command: tox
