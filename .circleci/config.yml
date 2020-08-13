@@ -8,9 +8,7 @@ defaults_python: &defaults_python
     - image: circleci/python:3.7
       environment:
         TOXENV: ci37
-    - image: circleci/python:3.6
-      environment:
-        TOXENV: ci36
+        CIRCLE_PROJECT_REPONAME: oo-in-python
   working_directory: *working_directory
 
 #NPM
@@ -22,6 +20,7 @@ restore_package_cache: &restore_package_cache
 
 save_package_cache: &save_package_cache
   save_cache:
+    name: Save Package Cache
     key: deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
     paths:
       - "venv"
@@ -33,19 +32,11 @@ workflows:
     jobs:
       - build
 environment:
-  CIRCLE_PROJECT_REPONAME: python-patterns
+  CIRCLE_PROJECT_REPONAME: oo-in-python
 
 jobs:
   build:
     <<: *defaults_python
-    docker:
-      - image: circleci/python:3.7
-        environment:
-          TOXENV: ci37
-          CIRCLE_PROJECT_REPONAME: python-patterns
-      - image: circleci/python:3.6
-        environment:
-          TOXENV: ci36
 
     steps:
       - checkout
@@ -55,6 +46,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipefile.lock" }}
       - run:
           command: |
+            export CIRCLE_PROJECT_REPONAME=oo-in-python
             pip install --upgrade pip
             pip install tox codecov
       - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
@@ -65,5 +57,5 @@ jobs:
           name: "code analysis (Test and syntax)"
           command: tox
       - run:
-          name: "codecov"
+          name: "Codecov"
           command: codecov
