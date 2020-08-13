@@ -7,7 +7,8 @@ python3.7: &defaults_python
   docker:
     - image: circleci/python:3.7
       environment:
-        TOXENV: ci37
+        TOXENV: ci27,ci37,cov-report
+        CODECOV_TOKEN: abafcb30-9d92-4040-a736-6ef71c615cf6
   working_directory: *working_directory
 
 #NPM
@@ -50,4 +51,7 @@ jobs:
           command: tox
       - run:
           name: "Codecov"
-          command: codecov
+          command: codecov -e ${TOXENV}
+      - run:
+          name: "[REPORT] Codecov"
+          command: bash <(curl -s https://codecov.io/bash)
