@@ -3,7 +3,58 @@ python-patterns
 
 A collection of design patterns and idioms in Python.
 
-Current Patterns
+Quiz
+-----------
+
+
+| Pattern | Diagram |
+|:-------:| ----------- |
+| AbstractFactory | ![AbstractFactory](diagrams/quiz/AbstractFactory.png) |
+| Adapter | ![Adapter](diagrams/quiz/Adapter.png) |
+| Bridge | ![Bridge](diagrams/quiz/Bridge.png) |
+| Builder | ![Builder](diagrams/quiz/Builder.png) |
+| ChainOfResponsibility | ![ChainOfResponsibility](diagrams/quiz/ChainOfResponsibility.png) |
+| Command | ![Command](diagrams/quiz/Command.png) |
+| Composite | ![Composite](diagrams/quiz/Composite.png) |
+| Decorator | ![Decorator](diagrams/quiz/Decorator.png) |
+| Facade | ![Facade](diagrams/quiz/Facade.png) |
+| FactoryMethod | ![FactoryMethod](diagrams/quiz/FactoryMethod.png) |
+| Flyweight | ![Flyweight](diagrams/quiz/Flyweight.png) |
+| Interpreter | ![Interpreter](diagrams/quiz/Interpreter.png) |
+| Iterator | ![Iterator](diagrams/quiz/Iterator.png) |
+| Mediator | ![Mediator](diagrams/quiz/Mediator.png) |
+| Memento | ![Memento](diagrams/quiz/Memento.png) |
+| Observer | ![Observer](diagrams/quiz/Observer.png) |
+| Prototype | ![Prototype](diagrams/quiz/Prototype.png) |
+| Proxy | ![Proxy](diagrams/quiz/Proxy.png) |
+| State | ![State](diagrams/quiz/State.png) |
+| Strategy | ![Strategy](diagrams/quiz/Strategy.png) |
+| TemplateMethod | ![TemplateMethod](diagrams/quiz/TemplateMethod.png) |
+| Visitor | ![Visitor](diagrams/quiz/Visitor.png) |
+
+
+
+Diagrams
+----------------
+
+| Pattern | Diagram |
+|:-------:| ----------- |
+| ChainOfResponsibility | ![ChainOfResponsibility.png](diagrams/ChainOfResponsibility.png) |
+| Decorator | ![Decorator.png](diagrams/Decorator.png) |
+| FactoryMethod | ![FactoryMethod.png](diagrams/FactoryMethod.png) |
+| Observer | ![Observer.pictClipping](diagrams/Observer.pictClipping) |
+| State | ![State.png](diagrams/State.png) |
+| State_example | ![State_example.png](diagrams/State_example.png) |
+| TemplateMethod | ![TemplateMethod.png](diagrams/TemplateMethod.png) |
+| _ClassificacaoGoF | ![_ClassificacaoGoF.png](diagrams/_ClassificacaoGoF.png) |
+| _ClassificacaoMetsker | ![_ClassificacaoMetsker.png](diagrams/_ClassificacaoMetsker.png) |
+| _Patterns Relationships_ | ![_Patterns Relationships_.png](diagrams/_Patterns Relationships_.png) |
+| _Patterns Scopes_ | ![_Patterns Scopes_.png](diagrams/_Patterns Scopes_.png) |
+| abstractFactory | ![abstractFactory.pictClipping](diagrams/abstractFactory.pictClipping) |
+| command | ![command.png](diagrams/command.png) |
+| command1 | ![command1.png](diagrams/command1.png) |
+
+Current Patterns - Coding examples 
 ----------------
 
 __Creational Patterns__:
