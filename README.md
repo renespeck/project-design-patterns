@@ -1,7 +1,5 @@
-python-patterns
-===============
+# project design patterns
 
-A collection of design patterns and idioms in Python.
 
 Quiz
 -----------
@@ -53,6 +51,12 @@ Diagrams
 | abstractFactory | ![abstractFactory.pictClipping](diagrams/abstractFactory.pictClipping) |
 | command | ![command.png](diagrams/command.png) |
 | command1 | ![command1.png](diagrams/command1.png) |
+
+
+python-patterns
+===============
+
+A collection of design patterns and idioms in Python.
 
 Current Patterns - Coding examples 
 ----------------
